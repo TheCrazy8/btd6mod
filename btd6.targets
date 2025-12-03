@@ -1,0 +1,37 @@
+<Project>
+    <PropertyGroup>
+        <!-- Change this to your BTD6 installation directory -->
+        <BloonsTD6>C:\Program Files (x86)\Steam\steamapps\common\BloonsTD6</BloonsTD6>
+        
+        <!-- Automatically find game DLLs -->
+        <GameDllLocation>$(BloonsTD6)\MelonLoader\Managed</GameDllLocation>
+        <ModHelperLocation>$(BloonsTD6)\Mods</ModHelperLocation>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- Reference MelonLoader -->
+        <Reference Include="MelonLoader" HintPath="$(BloonsTD6)\MelonLoader\MelonLoader.dll" Private="false" />
+        
+        <!-- Reference BTD6 Mod Helper -->
+        <Reference Include="Btd6ModHelper" HintPath="$(ModHelperLocation)\Btd6ModHelper.dll" Private="false" />
+        
+        <!-- Reference Il2Cppmscorlib -->
+        <Reference Include="Il2Cppmscorlib" HintPath="$(GameDllLocation)\Il2Cppmscorlib.dll" Private="false" />
+        
+        <!-- Reference Il2CppSystem -->
+        <Reference Include="Il2CppSystem" HintPath="$(GameDllLocation)\Il2CppSystem.dll" Private="false" />
+        
+        <!-- Reference game assemblies -->
+        <Reference Include="BloonsTD6" HintPath="$(GameDllLocation)\BloonsTD6.dll" Private="false" />
+        <Reference Include="Assembly-CSharp" HintPath="$(GameDllLocation)\Assembly-CSharp.dll" Private="false" />
+        
+        <!-- Reference Unity assemblies -->
+        <Reference Include="UnityEngine" HintPath="$(GameDllLocation)\UnityEngine.dll" Private="false" />
+        <Reference Include="UnityEngine.CoreModule" HintPath="$(GameDllLocation)\UnityEngine.CoreModule.dll" Private="false" />
+    </ItemGroup>
+
+    <!-- Copy built DLL to Mods folder after build -->
+    <Target Name="CopyToMods" AfterTargets="Build" Condition="Exists('$(ModHelperLocation)')">
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModHelperLocation)" />
+    </Target>
+</Project>
