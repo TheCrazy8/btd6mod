@@ -15,10 +15,10 @@ jobs:
       contents: read
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
     
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 6.0.x
     
@@ -29,7 +29,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore
       
     - name: Upload Build Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v5
       with:
         name: BTD6Mod
         path: bin/Release/net6.0/BTD6Mod.dll
@@ -42,10 +42,10 @@ jobs:
       contents: write
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
     
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 6.0.x
     
@@ -57,12 +57,12 @@ jobs:
       
     - name: Read LATEST.md
       id: latest
-      uses: juliangruber/read-file-action@v1
+      uses: juliangruber/read-file-action@v1.1.7
       with:
         path: ./LATEST.md
         
     - name: Create Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         body: ${{ steps.latest.outputs.content }}
         files: bin/Release/net6.0/BTD6Mod.dll
