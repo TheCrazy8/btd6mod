@@ -8,7 +8,17 @@
         <LangVersion>preview</LangVersion>
         <Optimize>False</Optimize>
         <DebugType>embedded</DebugType>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <!-- Allow build to succeed without game references for CI -->
+        <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
     </PropertyGroup>
+    
+    <!-- Exclude source files when game references are not available -->
+    <ItemGroup Condition="'$(GameReferencesAvailable)' == 'false'">
+        <Compile Remove="**\*.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+    </ItemGroup>
+    
     <ItemGroup>
         <Content Include=".github\workflows\build.yml" />
     </ItemGroup>
