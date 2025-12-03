@@ -6,10 +6,8 @@
         <!-- Automatically find game DLLs -->
         <GameDllLocation>$(BloonsTD6)\MelonLoader\Managed</GameDllLocation>
         <ModHelperLocation>$(BloonsTD6)\Mods</ModHelperLocation>
-        
         <!-- Check if we have game references available -->
         <GameReferencesAvailable Condition="Exists('$(BloonsTD6)\MelonLoader\MelonLoader.dll')">true</GameReferencesAvailable>
-        <GameReferencesAvailable Condition="!Exists('$(BloonsTD6)\MelonLoader\MelonLoader.dll')">false</GameReferencesAvailable>
     </PropertyGroup>
     
     <PropertyGroup Condition="'$(GameReferencesAvailable)' == 'true'">
