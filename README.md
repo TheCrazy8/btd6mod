@@ -23,9 +23,12 @@ This mod ports the exclusive hero skins from the Chinese edition of Bloons TD 6 
 
 ## Installation
 
+### For Users (Easy Method)
+
 1. **Download the mod**:
    - Click the download button above or go to [Releases](https://github.com/TheCrazy8/btd6mod/releases)
    - Download the latest `BTD6Mod.dll` file
+   - ⚠️ **Note**: The DLL from GitHub Actions may be a stub build. For a functional mod, you need to build it locally with BTD6 installed, or wait for a manually uploaded release.
 
 2. **Install prerequisites** (if you haven't already):
    - **BTD6 Version 52.0** - Make sure your game is updated
@@ -44,6 +47,23 @@ This mod ports the exclusive hero skins from the Chinese edition of Bloons TD 6 
    - The skins will be automatically unlocked when you reach the main menu!
    - Go to Heroes → Select Quincy, Psi, or Sauda → Choose the new skin
 
+### For Developers (Build from Source)
+
+To build a **fully functional** mod with all features:
+
+**Quick Build (Recommended)**:
+1. Make sure BTD6 is installed with MelonLoader and Mod Helper
+2. Run the build script:
+   - **Windows**: Double-click `build.bat` or run it from Command Prompt
+   - **Linux/Mac**: Run `./build.sh` from terminal
+3. The script will build the mod and copy it to your BTD6 Mods folder
+
+**Manual Build**:
+- See [BUILDING.md](BUILDING.md) for detailed build instructions
+- See [BUILD_SCRIPTS.md](BUILD_SCRIPTS.md) for build script documentation
+- Requires BTD6 installed with MelonLoader and Mod Helper
+- GitHub Actions builds create stub DLLs only - full builds need local game references
+
 ## How It Works
 
 - Skins are **automatically unlocked** and free to use
@@ -51,37 +71,59 @@ This mod ports the exclusive hero skins from the Chinese edition of Bloons TD 6 
 - Save game compatible - your saves work even if you remove the mod
 - The mod patches the game to include Chinese edition content
 
+**Note on Asset Bundles**: This mod requires asset bundles (3D models, textures, audio) that are not included in the repository. These must be obtained separately from the Chinese version of BTD6 or the original Chinese Skins Port mod.
+
 ## Building from Source
 
 Want to build the mod yourself or contribute?
 
-This project uses:
-- .NET 6.0
-- C# with preview language features
-- BTD6 Mod Helper API
+### Quick Build (Easy Way)
 
-To build:
-1. Clone this repository
-2. Open `BTD6Mod.sln` in Visual Studio or Rider
-3. Set up your `btd6.targets` file (see [BTD6 Mod Helper documentation](https://github.com/gurrenm3/BTD-Mod-Helper))
-4. Build the solution
+Just run the build script:
 
-The compiled DLL will be in `bin/Release/net6.0/BTD6Mod.dll`
-
-**Note**: The actual skin assets (3D models, textures, audio) are loaded from asset bundles that are not included in this repository. You'll need to extract them from the Chinese version of BTD6 or obtain them separately.
-
-## Automated Builds
-
-This repository includes GitHub Actions that automatically:
-- Build the mod on every push
-- Create releases when you push a version tag (e.g., `v1.1.0`)
-- Upload the compiled DLL to the release
-
-To create a new release:
-```bash
-git tag v1.1.0
-git push origin v1.1.0
+**Windows**:
+```cmd
+build.bat
 ```
+
+**Linux/Mac/WSL**:
+```bash
+./build.sh
+```
+
+The scripts will:
+- Check all prerequisites
+- Build the mod
+- Copy it to your BTD6 Mods folder
+- Tell you if the build was successful
+
+See [BUILD_SCRIPTS.md](BUILD_SCRIPTS.md) for script documentation and troubleshooting.
+
+### Manual Build
+
+**Requirements**: .NET 6.0 SDK, BTD6 v52.0 with MelonLoader and Mod Helper
+
+```bash
+git clone https://github.com/TheCrazy8/btd6mod.git
+cd btd6mod
+dotnet build --configuration Release
+```
+
+**Detailed Instructions**: See [BUILDING.md](BUILDING.md) for comprehensive build documentation.
+
+### Important Notes
+
+- **Functional builds** require BTD6 installed locally with game references
+- **GitHub Actions** creates stub builds (~10KB) without game references
+- **Full builds** are ~50-100KB and contain all mod functionality
+- Update `btd6.targets` if BTD6 is not at the default Steam location
+
+### Asset Bundles
+
+The code references asset bundles that must be obtained separately:
+- Extract from Chinese BTD6 version
+- Get from original Chinese Skins Port mod  
+- The bundle is named `chineseport` and contains models, textures, and audio
 
 ## Features
 

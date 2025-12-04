@@ -13,10 +13,11 @@
         <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
     </PropertyGroup>
     
-    <!-- Exclude source files when game references are not available -->
+    <!-- Exclude source files when game references are not available for CI builds -->
+    <!-- This creates a stub DLL. For a functional build, install BTD6 with MelonLoader and Mod Helper -->
     <ItemGroup Condition="'$(GameReferencesAvailable)' != 'true'">
-        <Compile Remove="*.cs" />
-        <Compile Remove="ModHelperData.cs" />
+        <Compile Remove="**\*.cs" />
+        <Compile Include="ModHelperData.cs" />
     </ItemGroup>
     
     <ItemGroup>
