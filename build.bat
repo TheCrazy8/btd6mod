@@ -34,7 +34,7 @@ if not exist "%BTD6_PATH%\BloonsTD6.exe" (
 )
 
 REM Check if MelonLoader is installed
-if not exist "%BTD6_PATH%\MelonLoader\MelonLoader.dll" (
+if not exist "%BTD6_PATH%\MelonLoader\net6\MelonLoader.dll" (
     echo WARNING: MelonLoader not found in BTD6 directory!
     echo Please install MelonLoader from: https://melonwiki.xyz/
     echo.
