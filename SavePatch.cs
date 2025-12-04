@@ -111,6 +111,10 @@ public class SavePatch
         profile.seenNewTowerSkinNotification.Add("New Year Psi");
         profile.seenNewTowerSkinNotification.Add("New Year Sauda");
 
-        profile.selectedTowerSkinData = selectedTowerSkinData;
+        // Restore individual skin selections to preserve other tower skins
+        foreach (var keypair in selectedTowerSkinData)
+        {
+            profile.selectedTowerSkinData[keypair.key] = keypair.value;
+        }
     }
 }
