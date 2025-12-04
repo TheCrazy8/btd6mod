@@ -25,7 +25,7 @@ REM Check if BTD6 is installed
 set "BTD6_PATH=C:\Program Files (x86)\Steam\steamapps\common\BloonsTD6"
 if not exist "%BTD6_PATH%\BloonsTD6.exe" (
     echo WARNING: BTD6 not found at default location:
-    echo %BTD6_PATH%
+    echo "%BTD6_PATH%"
     echo.
     echo If BTD6 is installed elsewhere, edit btd6.targets and update the path.
     echo.
@@ -122,12 +122,12 @@ if exist "bin\Release\net6.0\BTD6Mod.dll" (
         
         REM Check if it was copied to Mods folder
         if exist "%BTD6_PATH%\Mods\BTD6Mod.dll" (
-            echo DLL was automatically copied to: %BTD6_PATH%\Mods\
+            echo DLL was automatically copied to: "%BTD6_PATH%\Mods\"
             echo You can now launch BTD6 to use the mod!
         ) else (
             echo DLL was NOT copied to Mods folder automatically.
             echo You can manually copy it from: bin\Release\net6.0\BTD6Mod.dll
-            echo To: %BTD6_PATH%\Mods\
+            echo To: "%BTD6_PATH%\Mods\"
         )
     )
 ) else (
